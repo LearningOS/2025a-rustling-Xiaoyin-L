@@ -2,7 +2,7 @@
 	single linked list merge
 	This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
-// I AM NOT DONE
+
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
@@ -70,15 +70,49 @@ impl<T> LinkedList<T> {
         }
     }
 	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
+    where
+        T: std::cmp::PartialOrd,
+    
 	{
-		//TODO
-		Self {
-            length: 0,
-            start: None,
-            end: None,
+		let mut result = LinkedList::new();
+
+        let mut add_node = |node: NonNull<Node<T>>| {
+             // 断开原链接, 防止节点同时属于两个链表, take 将 node 的 next 设为 none 并取出 next, 这是一个原子操作
+            let next = unsafe{ (*node.as_ptr()).next.take() };
+
+            match result.end {
+                None      => result.start = Some(node),
+                Some(end) => unsafe{(*end.as_ptr()).next = Some(node)},
+            }
+
+            result.end = Some(node);
+            result.length += 1;
+            next
+        };
+
+        let mut a_current = list_a.start;
+        let mut b_current = list_b.start;
+
+        while let (Some(a), Some(b)) = (a_current, b_current) {
+            if unsafe {(*a.as_ptr()).val <= (*b.as_ptr()).val} {
+                a_current = add_node(a)
+            } else {
+                b_current = add_node(b)
+            };
         }
-	}
+
+        // 处理剩余节点
+        while let Some(curr) = a_current {
+            a_current = add_node(curr);
+        }
+        while let Some(curr) = b_current {
+            b_current = add_node(curr);
+        }
+
+        result
+    }
 }
+
 
 impl<T> Display for LinkedList<T>
 where
