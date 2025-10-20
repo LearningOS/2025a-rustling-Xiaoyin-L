@@ -43,7 +43,7 @@ pub fn capitalize_words_string(words: &[&str]) -> String {
         .collect::<Vec<String>>()
         .join("")
 }
-
+  
 #[cfg(test)]
 mod tests {
     use super::*;
