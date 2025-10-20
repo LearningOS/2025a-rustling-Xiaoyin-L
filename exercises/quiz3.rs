@@ -46,7 +46,7 @@ mod tests {
             "Tom Wriggle (12) - achieved a grade of 2.1"
         );
     }
-
+  
     #[test]
     fn generate_alphabetic_report_card() {
         // TODO: Make sure to change the grade here after you finish the exercise.

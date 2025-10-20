@@ -14,7 +14,7 @@ pub trait Licensed {
         String::from("Some information")
     }
 }
-
+  
 struct SomeSoftware {
     version_number: i32,
 }
