@@ -16,7 +16,7 @@ impl<T> Wrapper<T> {
         Wrapper { value }
     }
 }
-
+  
 #[cfg(test)]
 mod tests {
     use super::*;

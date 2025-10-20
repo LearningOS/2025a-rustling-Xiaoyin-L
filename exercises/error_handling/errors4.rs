@@ -12,7 +12,7 @@ enum CreationError {
     Negative,
     Zero,
 }
-
+  
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<PositiveNonzeroInteger, CreationError> {
         // Hmm...? Why is this only returning an Ok value?
