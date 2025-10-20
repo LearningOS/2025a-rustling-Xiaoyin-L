@@ -11,7 +11,7 @@
 // Execute `rustlings hint hashmaps1` or use the `hint` watch subcommand for a
 // hint.
 
-
+  
 
 use std::collections::HashMap;
 
