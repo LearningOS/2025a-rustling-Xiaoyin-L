@@ -11,7 +11,7 @@ fn main() {
     if my_option.is_none() {
         //my_option.unwrap();
     }
-
+  
     let my_arr = &[
         -1, -2, -3,
         -4, -5, -6
